@@ -92,3 +92,10 @@ media/courses/
 media/products/
 media/profiles/
 media/resources/
+
+
+# Django migrations
+**/migrations/**
+!**/migrations/
+!**/migrations/__init__.py
+**/migrations/__pycache__/
