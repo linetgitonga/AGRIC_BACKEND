@@ -23,7 +23,7 @@ class CropRecommendationSerializer(serializers.ModelSerializer):
         read_only_fields = ('user', 'confidence_score', 'recommendation_notes')
 
 class SoilInputSerializer(serializers.Serializer):
-    location_name = serializers.CharField(max_length=100)
+    location_name = serializers.CharField(max_length=100 ,required=False)
     latitude = serializers.FloatField(required=False)
     longitude = serializers.FloatField(required=False)
     nitrogen = serializers.FloatField()

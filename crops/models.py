@@ -28,6 +28,21 @@ class Crop(models.Model):
     min_ph = models.FloatField(help_text="Minimum pH level", blank=True, null=True)
     max_ph = models.FloatField(help_text="Maximum pH level", blank=True, null=True)
     
+    care_tips = models.TextField(
+        help_text="General care instructions and tips for growing this crop",
+        blank=True,
+        null=True
+    )
+    fertilizers = models.TextField(
+        help_text="Recommended fertilizers and application guidelines",
+        blank=True,
+        null=True
+    )
+    pesticides = models.TextField(
+        help_text="Recommended pesticides and application guidelines",
+        blank=True,
+        null=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
