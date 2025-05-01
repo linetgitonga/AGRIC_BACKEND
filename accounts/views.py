@@ -87,9 +87,7 @@ class LoginView(TokenObtainPairView):
             email = serializer.validated_data['email']
             password = serializer.validated_data['password']
             
-            print(f"Login attempt: email={email} password={password}")
             user = authenticate(email=email, password=password)
-            print(f"Authentication result: {user}")
             
             if user is not None:
                 # Get tokens
