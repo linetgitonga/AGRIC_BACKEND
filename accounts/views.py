@@ -22,7 +22,7 @@ class RegisterView(APIView):
 
     permission_classes = [permissions.AllowAny]
     def post(self, request):
-        user_serializer = UserSerializer(data=request.data)
+        user_serializer = RegisterSerializer(data=request.data)
         
         try:
             with transaction.atomic():

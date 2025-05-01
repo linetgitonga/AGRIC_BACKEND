@@ -6,10 +6,10 @@ from .models import FarmerProfile, BuyerProfile
 
 User = get_user_model()
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        if instance.user_type == 'farmer':
-            FarmerProfile.objects.create(user=instance)
-        elif instance.user_type == 'buyer':
-            BuyerProfile.objects.create(user=instance)
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         if instance.user_type == 'farmer':
+#             FarmerProfile.objects.create(user=instance)
+#         elif instance.user_type == 'buyer':
+#             BuyerProfile.objects.create(user=instance)
