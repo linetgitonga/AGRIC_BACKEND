@@ -60,6 +60,11 @@ class FarmerProfile(models.Model):
     experience_years = models.PositiveIntegerField(blank=True, null=True)
     profile_image = models.ImageField(upload_to='profiles/farmers/', blank=True, null=True)
     
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user'], name='unique_farmer_profile')
+        ]
+        
     def __str__(self):
         return f"Farmer: {self.user.email}"
 

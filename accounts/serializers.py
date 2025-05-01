@@ -50,3 +50,6 @@ class BuyerProfileSerializer(serializers.ModelSerializer):
         model = BuyerProfile
         fields = ('id', 'user', 'company_name', 'business_type', 'phone_number', 'address', 'profile_image')
 
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(write_only=True)
