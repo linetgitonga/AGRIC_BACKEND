@@ -22,7 +22,7 @@ class RegisterView(APIView):
 
     permission_classes = [permissions.AllowAny]
     def post(self, request):
-        user_serializer = UserSerializer(data=request.data)
+        user_serializer = RegisterSerializer(data=request.data)
         
         try:
             with transaction.atomic():
@@ -87,7 +87,9 @@ class LoginView(TokenObtainPairView):
             email = serializer.validated_data['email']
             password = serializer.validated_data['password']
             
+            print(f"Login attempt: email={email} password={password}")
             user = authenticate(email=email, password=password)
+            print(f"Authentication result: {user}")
             
             if user is not None:
                 # Get tokens
