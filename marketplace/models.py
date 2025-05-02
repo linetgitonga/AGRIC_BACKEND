@@ -44,7 +44,52 @@ class Product(models.Model):
     location = models.CharField(max_length=200, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
+
+
+
+
+# ADDED FIELDS
+
+    PACKAGING_CHOICES = (
+        ('plastic', 'Plastic'),
+        ('mesh', 'Mesh Bag'),
+        ('carton', 'Carton Box'),
+        ('none', 'No Packaging')
+    )
+
+    CERTIFICATION_CHOICES = (
+        ('None', 'No Certification'),
+        ('Organic', 'Organic Certified'),
+        ('GAP', 'Good Agricultural Practices'),
+        ('Fairtrade', 'Fairtrade Certified')
+    )
     
+    min_order_quantity = models.DecimalField(
+        max_digits=10, 
+        decimal_places=2,
+        default=1,
+        help_text="Minimum quantity that can be ordered"
+    )
+    
+    packaging = models.CharField(
+        max_length=20,
+        choices=PACKAGING_CHOICES,
+        default='none',
+        help_text="Type of packaging used"
+    )
+    
+    certification = models.CharField(
+        max_length=50,
+        choices=CERTIFICATION_CHOICES,
+        default='None',
+        help_text="Product certification type"
+    )
+    
+    delivery_available = models.BooleanField(
+        default=False,
+        help_text="Whether delivery service is available"
+    )
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
