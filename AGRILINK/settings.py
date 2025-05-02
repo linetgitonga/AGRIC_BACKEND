@@ -108,6 +108,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  
     "http://127.0.0.1:5173",
     "https://agric-backend-63xc.onrender.com",
+    "https://agrilink-frontend.vercel.app/",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -278,9 +279,22 @@ CORS_ALLOW_ALL_ORIGINS = True
 TOMORROW_IO_API_KEY = 'sbxlhihFZJqBavBtTqs2gqqXaXQdE3pn'
 
 
+
+# SECURITY SETTINGS
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+
 ALLOWED_HOSTS = [
     'agric-backend-63xc.onrender.com',
     'localhost',
     '127.0.0.1',
     '*',  # Only use in development
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://agric-backend-63xc.onrender.com',
+]
+
+# Security middleware settings
+SECURE_SSL_REDIRECT = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
