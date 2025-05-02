@@ -159,21 +159,30 @@ WSGI_APPLICATION = 'AGRILINK.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+
+#         # For production, use PostgreSQL as mentioned in the concept note
+#         # 'ENGINE': 'django.db.backends.postgresql',
+#         # 'NAME': 'agrilink',
+#         # 'USER': 'postgres',
+#         # 'PASSWORD': 'password',
+#         # 'HOST': 'localhost',
+#         # 'PORT': '5432',
+#     }
+# }
+
+
+import dj_database_url
+import os
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-
-        # For production, use PostgreSQL as mentioned in the concept note
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'agrilink',
-        # 'USER': 'postgres',
-        # 'PASSWORD': 'password',
-        # 'HOST': 'localhost',
-        # 'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -264,11 +273,20 @@ SIMPLE_JWT = {
 ASGI_APPLICATION = 'AGRILINK.asgi.application'
 
 # Channel Layers Configuration
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('127.0.0.1', 6379)],
+#         },
+#     },
+# }
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379')],
         },
     },
 }
@@ -283,18 +301,27 @@ TOMORROW_IO_API_KEY = 'sbxlhihFZJqBavBtTqs2gqqXaXQdE3pn'
 # SECURITY SETTINGS
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
+# Security Settings
+if not DEBUG:
+    # SSL/HTTPS Settings
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+else:
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+
+# Update ALLOWED_HOSTS and CSRF settings
 ALLOWED_HOSTS = [
     'agric-backend-63xc.onrender.com',
     'localhost',
     '127.0.0.1',
-    '*',  # Only use in development
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://agric-backend-63xc.onrender.com',
+    'http://localhost:3000',
+    'http://localhost:5173',
 ]
-
-# Security middleware settings
-SECURE_SSL_REDIRECT = not DEBUG
-SESSION_COOKIE_SECURE = not DEBUG
-CSRF_COOKIE_SECURE = not DEBUG
