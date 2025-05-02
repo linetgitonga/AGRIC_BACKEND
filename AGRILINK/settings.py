@@ -107,6 +107,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:5173",  
     "http://127.0.0.1:5173",
+    "https://agric-backend-63xc.onrender.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -275,3 +276,11 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # Add Tomorrow.io API key
 TOMORROW_IO_API_KEY = 'sbxlhihFZJqBavBtTqs2gqqXaXQdE3pn'
+
+
+ALLOWED_HOSTS = [
+    'agric-backend-63xc.onrender.com',
+    'localhost',
+    '127.0.0.1',
+    '*',  # Only use in development
+]
