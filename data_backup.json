@@ -1,0 +1,6 @@
+BASE_DIR: C:\Users\LINET\Desktop\HOMESOLUTIONS\AGRILINK
+Full MODEL_PATH: C:\Users\LINET\Desktop\HOMESOLUTIONS\AGRILINK\MODEL\Crop_Recommender_model.pkl
+Model path exists: True
+Scaler path exists: True
+Label encoder path exists: True
+[

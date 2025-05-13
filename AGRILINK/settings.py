@@ -80,6 +80,12 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'channels',
     'corsheaders',
+    'django_filters',
+    'django_extensions',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'channels_redis',  
 
     # Project apps
     'accounts',
@@ -178,10 +184,29 @@ WSGI_APPLICATION = 'AGRILINK.wsgi.application'
 import dj_database_url
 import os
 
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.environ.get('DATABASE_URL')
+#     )
+# }
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'johntest$default',
+        'USER': 'johntest',
+        'PASSWORD': 'agrilink@123',
+        'HOST': 'johntest.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'connect_timeout': 60,  # Add timeout
+            'charset': 'utf8mb4',   # Specify charset
+        },
+        'TEST': {
+            'NAME': 'test_johntest$default',
+        },
+    }
 }
 
 # Password validation
