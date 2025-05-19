@@ -121,6 +121,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     "https://agric-backend-63xc.onrender.com",
     "https://agrilink-frontend.vercel.app",
+    "http://localhost:5173",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -186,16 +187,16 @@ WSGI_APPLICATION = 'AGRILINK.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'agrilink_db_0nfj',
-        'USER': 'agrilink_db_0nfj_user',
-        'PASSWORD': 'DmKjcu3tN9a1OSvGP4I3U5V7hQ4qK6zx',
-        'HOST': 'dpg-d0l9bcbe5dus73ccm660-a',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'agrilink_db_0nfj',
+#         'USER': 'agrilink_db_0nfj_user',
+#         'PASSWORD': 'DmKjcu3tN9a1OSvGP4I3U5V7hQ4qK6zx',
+#         'HOST': 'dpg-d0l9bcbe5dus73ccm660-a',
+#         'PORT': '5432',
+#     }
+# }
 
 
 
@@ -226,6 +227,13 @@ import os
 #         },
 #     }
 # }
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
