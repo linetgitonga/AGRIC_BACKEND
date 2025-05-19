@@ -85,7 +85,11 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'channels_redis',  
+    'channels_redis', 
+    'sslserver', 
+    # 'allauth',
+    # 'allauth.account',
+    'allauth.socialaccount',
 
     # Project apps
     'accounts',
@@ -95,11 +99,13 @@ INSTALLED_APPS = [
     'community',
     'learning',
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -165,20 +171,20 @@ WSGI_APPLICATION = 'AGRILINK.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+DATABASES = {
+    'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
 
-#         # For production, use PostgreSQL as mentioned in the concept note
-#         # 'ENGINE': 'django.db.backends.postgresql',
-#         # 'NAME': 'agrilink',
-#         # 'USER': 'postgres',
-#         # 'PASSWORD': 'password',
-#         # 'HOST': 'localhost',
-#         # 'PORT': '5432',
-#     }
-# }
+        # For production, use PostgreSQL as mentioned in the concept note
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'agrilink',
+        'USER': 'postgres',
+        'PASSWORD': '123456789',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
 
 import dj_database_url
@@ -190,24 +196,24 @@ import os
 #     )
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'johntest$default',
-        'USER': 'johntest',
-        'PASSWORD': 'agrilink@123',
-        'HOST': 'johntest.mysql.pythonanywhere-services.com',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            'connect_timeout': 60,  # Add timeout
-            'charset': 'utf8mb4',   # Specify charset
-        },
-        'TEST': {
-            'NAME': 'test_johntest$default',
-        },
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'johntest$default',
+#         'USER': 'johntest',
+#         'PASSWORD': 'agrilink@123',
+#         'HOST': 'johntest.mysql.pythonanywhere-services.com',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+#             'connect_timeout': 60,  # Add timeout
+#             'charset': 'utf8mb4',   # Specify charset
+#         },
+#         'TEST': {
+#             'NAME': 'test_johntest$default',
+#         },
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -326,17 +332,19 @@ TOMORROW_IO_API_KEY = 'sbxlhihFZJqBavBtTqs2gqqXaXQdE3pn'
 # SECURITY SETTINGS
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-# Security Settings
-if not DEBUG:
-    # SSL/HTTPS Settings
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-else:
-    SECURE_SSL_REDIRECT = False
-    SESSION_COOKIE_SECURE = False
-    CSRF_COOKIE_SECURE = False
+# # Security Settings
+# if not DEBUG:
+#     # SSL/HTTPS Settings
+#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#     SECURE_SSL_REDIRECT = True
+#     SESSION_COOKIE_SECURE = True
+#     CSRF_COOKIE_SECURE = True
+# else:
+#     SECURE_SSL_REDIRECT = False
+#     SESSION_COOKIE_SECURE = False
+#     CSRF_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False
+
 
 # Update ALLOWED_HOSTS and CSRF settings
 ALLOWED_HOSTS = [
