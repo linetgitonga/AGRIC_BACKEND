@@ -44,3 +44,4 @@ django_extensions
 mysqlclient==2.2.0
 django-allauth
 django-sslserver
+uvicorn
