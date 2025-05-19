@@ -171,20 +171,32 @@ WSGI_APPLICATION = 'AGRILINK.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         # 'ENGINE': 'django.db.backends.sqlite3',
+#         # 'NAME': BASE_DIR / 'db.sqlite3',
+
+#         # For production, use PostgreSQL as mentioned in the concept note
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'agrilink',
+#         'USER': 'postgres',
+#         'PASSWORD': '123456789',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-
-        # For production, use PostgreSQL as mentioned in the concept note
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'agrilink',
-        'USER': 'postgres',
-        'PASSWORD': '123456789',
-        'HOST': 'localhost',
+        'NAME': 'agrilink_db_0nfj',
+        'USER': 'agrilink_db_0nfj_user',
+        'PASSWORD': 'DmKjcu3tN9a1OSvGP4I3U5V7hQ4qK6zx',
+        'HOST': 'dpg-d0l9bcbe5dus73ccm660-a',
         'PORT': '5432',
     }
 }
+
 
 
 import dj_database_url
