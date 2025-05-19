@@ -1,8 +1,8 @@
 # crops/models.py
 from django.db import models
-from django.contrib.auth import get_user_model
+# from django.contrib.auth import get_user_model
 
-User = get_user_model()
+# User = get_user_model()
 
 class Crop(models.Model):
     name = models.CharField(max_length=100)
@@ -50,7 +50,8 @@ class Crop(models.Model):
         return self.name
 
 class SoilRecord(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     location_name = models.CharField(max_length=100)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
@@ -73,7 +74,8 @@ class SoilRecord(models.Model):
         return f"{self.location_name} - {self.user.email}"
 
 class CropRecommendation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     soil_record = models.ForeignKey(SoilRecord, on_delete=models.CASCADE)
     recommended_crop = models.ForeignKey(Crop, on_delete=models.CASCADE)
     confidence_score = models.FloatField(help_text="Confidence score from 0 to 1")
