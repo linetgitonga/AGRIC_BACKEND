@@ -28,7 +28,7 @@ class ContractRequestViewSet(viewsets.ModelViewSet):
             return ContractRequest.objects.filter(buyer=user)
         elif user.user_type == 'farmer':
             return ContractRequest.objects.filter(farmer=user)
-        return ContractRequest.objects.none()
+        return ContractRequest.objects.all()
     
     def perform_create(self, serializer):
         serializer.save(buyer=self.request.user)
