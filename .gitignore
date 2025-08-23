@@ -23,7 +23,6 @@ wheels/
 # Django
 *.log
 local_settings.py
-db.sqlite3
 db.sqlite3-journal
 media/
 staticfiles/
@@ -87,15 +86,9 @@ Thumbs.db
 # Redis
 dump.rdb
 
-# Project specific
-media/courses/
-media/products/
-media/profiles/
-media/resources/
 
 
 # Django migrations
-**/migrations/**
 !**/migrations/
 !**/migrations/__init__.py
 **/migrations/__pycache__/
