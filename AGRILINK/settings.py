@@ -510,6 +510,10 @@ CORS_ALLOWED_ORIGINS = [
     "https://agric-backend-63xc.onrender.com",
     "https://agrilink-frontend.vercel.app",
     "http://localhost:5173",
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://agrilink-frontend.vercel.app",
+    "https://agric-backend-63xc.onrender.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
