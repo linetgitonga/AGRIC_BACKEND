@@ -451,8 +451,12 @@ SECRET_KEY = 'django-insecure-!rl9!pehc3cn4o-*ojtkl-uv%c(^k)*4sdhn)$d4_oxpa&n!k5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    'agric-backend-63xc.onrender.com',
+    'localhost',
+    '127.0.0.1',
+    'vercel.app',
+]
 
 # Application definition
 
@@ -502,19 +506,22 @@ MIDDLEWARE = [
     
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000", 
-    "http://127.0.0.1:3000",
-    "http://localhost:5173",  
-    "http://127.0.0.1:5173",
-    "https://agric-backend-63xc.onrender.com",
-    "https://agrilink-frontend.vercel.app",
-    "http://localhost:5173",
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "https://agrilink-frontend.vercel.app",
-    "https://agric-backend-63xc.onrender.com",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000", 
+#     "http://127.0.0.1:3000",
+#     "http://localhost:5173",  
+#     "http://127.0.0.1:5173",
+#     "https://agric-backend-63xc.onrender.com",
+#     "https://agrilink-frontend.vercel.app",
+#     "http://localhost:5173",
+#     "http://localhost:5173",
+#     "http://localhost:3000",
+#     "https://agrilink-frontend.vercel.app",
+#     "https://agric-backend-63xc.onrender.com",
+# ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+# Remove or comment out CORS_ALLOWED_ORIGINS
 
 CORS_ALLOW_CREDENTIALS = True
 
