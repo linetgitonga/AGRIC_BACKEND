@@ -45,3 +45,4 @@ mysqlclient==2.2.0
 django-allauth
 django-sslserver
 uvicorn
+python-dotenv
